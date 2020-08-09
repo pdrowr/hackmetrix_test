@@ -39,7 +39,6 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.0]
 
       # Additional attributes
       t.integer :role, default: 0
-      
       t.timestamps
     end
 
