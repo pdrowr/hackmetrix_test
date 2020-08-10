@@ -6,6 +6,14 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         registrations: 'api/v1/overrides/registration'
       }
+
+      scope :admin do
+        resources :tasks, only: %w[create update], module: 'v1/admin'
+      end
+
+      scope :client do
+        resources :tasks, only: %w[index], module: 'v1/client'
+      end
     end
   end
 end
