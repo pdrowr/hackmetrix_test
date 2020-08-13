@@ -8,11 +8,11 @@ Rails.application.routes.draw do
       }
 
       scope :admin do
-        resources :tasks, only: %w[create update], module: 'v1/admin'
+        resources :tasks, only: %w[index create update], module: 'v1/admin'
       end
 
       scope :client do
-        resources :tasks, only: %w[index], module: 'v1/client'
+        resources :tasks, only: %w[index show], module: 'v1/client'
       end
     end
   end

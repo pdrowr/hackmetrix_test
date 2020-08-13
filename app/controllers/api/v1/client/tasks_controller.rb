@@ -13,6 +13,13 @@ module Api
           render_success(tasks)
         end
 
+        def show
+          task = Task.find(params.dig(:id))
+          validate_task_owner(task)
+        rescue ActiveRecord::RecordNotFound => e
+          render_error(e)
+        end
+
         private
 
         def validate_admin_user!
@@ -21,6 +28,12 @@ module Api
           render_unauthorized(
             "Houston we have a problem! Tasks only belong to users with role_1 or role_2 and you're an admin user"
           )
+        end
+
+        def validate_task_owner(task)
+          return render_success(task) if task.user_id.eql?(current_api_user.id)
+
+          return render_unauthorized("You don't have acces to this Task!")
         end
       end
     end

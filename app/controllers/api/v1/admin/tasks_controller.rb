@@ -8,6 +8,11 @@ module Api
         before_action :authenticate_api_user!
         before_action :validate_admin_user!
 
+        def index
+          tasks = Task.all.includes(:user)
+          render_success(tasks)
+        end
+
         def create
           task = Task.new(tasks_params)
           handle_persisted_response(task)
