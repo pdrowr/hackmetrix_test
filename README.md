@@ -2,6 +2,8 @@
 
 Este proyecto de prueba consiste en elaborar un ABM con Auth hecho en Rails 6, para optar al puesto de Desarrollador Backend en Hackmetrix
 
+#### Nota: Para esta prueba sencilla decidí manejar los roles 'manualmente', pero existen otras alternativas para el manejo de roles permisos cómo `cancancan`/`pundit` y `rolify` las cuáles también manejo.
+
 ### Instalación
 
 Clonar el repositorio desde github:
@@ -98,12 +100,23 @@ Visitar: `http://localhost:3000`
 
 ##### NOTA: Sólo los usuarios con rol `admin` pueden crear tasks, tomar esto en cuenta a la hora te autenticarse.
 
+##### Listar todos los tasks: (Autenticación requerida, solo usuarios con rol `admin`)
+
+###### URL
+
+`/admin/tasks #GET`
+
 ##### Ver Tasks asociados a un usuario.
 
 ###### URL
 
 `/client/tasks #GET`
 
+##### Ver detalle de un Task
+
+###### URL
+
+`/client/tasks/:task_id #GET`
 
 ### Usuarios para pruebas
 La aplicación cuenta con 3 usuarios predefinidos, uno para cada rol (```role_1, role_2, admin```) a continuación se describen las credenciales correspondientes a cada uno de ellos:
