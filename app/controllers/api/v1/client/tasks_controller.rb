@@ -10,7 +10,7 @@ module Api
 
         def index
           tasks = current_api_user.tasks
-          render_success(tasks)
+          render json: tasks
         end
 
         def show
@@ -31,7 +31,7 @@ module Api
         end
 
         def validate_task_owner(task)
-          return render_success(task) if task.user_id.eql?(current_api_user.id)
+          return render json: task if task.user_id.eql?(current_api_user.id)
 
           return render_unauthorized("You don't have acces to this Task!")
         end

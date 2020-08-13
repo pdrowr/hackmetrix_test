@@ -10,7 +10,7 @@ module Api
 
         def index
           tasks = Task.all.includes(:user)
-          render_success(tasks)
+          render json: tasks
         end
 
         def create
